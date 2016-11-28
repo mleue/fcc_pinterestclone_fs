@@ -1,0 +1,9 @@
+*.swp
+*.swo
+/node_modules/
+/build/
+stormpath.yml
+npm-debug.log
+/data/
+/client/build/
+/client/node_modules/
