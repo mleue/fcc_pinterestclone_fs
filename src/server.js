@@ -3,9 +3,15 @@ import stormpath from 'express-stormpath';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import path from 'path';
-import {connectToDB} from './core/db';
 
 let app = express();
+
+app.set('port', (process.env.PORT || 3000));
+
+// Express only serves static assets in production
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../client/run/')));
+}
 
 app.use(stormpath.init(app, {
 	web: {
@@ -58,11 +64,10 @@ app.get('*', function (req, res) {
 });
 
 app.on('stormpath.ready', function () {
-	app.listen(3000, 'localhost', function (err) {
+	app.listen(app.get('port'), function (err) {
 		if (err) {
 			return console.error(err);
 		}
-		console.log('Listening at http://localhost:3000');
-		connectToDB();
+		console.log('Listening...');
 	});
 });
