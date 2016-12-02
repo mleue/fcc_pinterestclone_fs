@@ -9,8 +9,16 @@ export default class App extends React.Component {
 	static childContextTypes = {
 		appState: React.PropTypes.func
 	};
-	constructor() {
-		super();
+	componentWillMount() {
+		if (localStorage.getItem('idToken')) {
+			let profile = JSON.parse(localStorage.getItem('profile'));
+			this.appState({ user: '@'+profile.screen_name });
+			this.appState({ authenticated: true });
+		} else {
+			this.createLock();
+		}
+	}
+	createLock() {
 		let options = {
 			avatar: null
 		};

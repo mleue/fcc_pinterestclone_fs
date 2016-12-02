@@ -9,10 +9,10 @@ export default class MyLibrary extends React.Component {
 	};
 	componentWillMount() {
 		this.state = { mypins: [] };
-		//this.fetch();
+		this.fetch();
 	}
 	fetch() {
-		axios.get('/api/books/getbooksbyuser?username='+this.context.user.email)
+		axios.get('/api/pins/getpinsbyuser?username='+this.context.appState('user'))
 			.then( (response) => {
 				this.setState({mypins: response.data});
 			})
