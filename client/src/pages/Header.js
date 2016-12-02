@@ -3,6 +3,13 @@ import { Link } from 'react-router';
 import { LoginLink, LogoutLink, Authenticated, NotAuthenticated } from 'react-stormpath';
 
 export default class Header extends React.Component {
+	static contextTypes = {
+		appState: React.PropTypes.func
+	};
+	handleSignIn() {
+		console.log(this.context.appState('lock'));
+		this.context.appState('lock').show();
+	}
 	render() {
 		return (
 			<nav className="navbar navbar-default navbar-static-top">
@@ -17,6 +24,9 @@ export default class Header extends React.Component {
 							</Authenticated>
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
+							<li>
+								<span onClick={this.handleSignIn.bind(this)}>Sign In</span>
+							</li>
 							<NotAuthenticated>
 								<li>
 									<LoginLink />
