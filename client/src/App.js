@@ -10,7 +10,6 @@ export default class App extends React.Component {
 		appState: React.PropTypes.func
 	};
 	componentWillMount() {
-		console.log("app mounts");
 		if (localStorage.getItem('idToken')) {
 			let profile = JSON.parse(localStorage.getItem('profile'));
 			this.appState({ user: '@'+profile.screen_name });

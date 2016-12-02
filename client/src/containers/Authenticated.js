@@ -7,9 +7,9 @@ export default class Authenticated extends React.Component {
 	render() {
 		if (this.context.appState('authenticated')) {
 			return (
-				<div>
+				<li>
 					{ this.props.children }
-				</div>
+				</li>
 			);
 		} else {
 			return <div />;

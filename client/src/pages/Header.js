@@ -25,19 +25,13 @@ export default class Header extends React.Component {
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							<NotAuthenticated>
-								<li>
-									<Link to="/" onClick={this.handleSignIn.bind(this)}>Sign In</Link>
-								</li>
+								<Link to="/" onClick={this.handleSignIn.bind(this)}>Sign In</Link>
 							</NotAuthenticated>
 							<Authenticated>
-								<li>
-									<Link to="/mypins">My Pins</Link>
-								</li>
+								<Link to="/mypins">My Pins</Link>
 							</Authenticated>
 							<Authenticated>
-								<li>
-									<Link to="/" onClick={this.handleLogout.bind(this)}>Logout</Link>
-								</li>
+								<Link to="/" onClick={this.handleLogout.bind(this)}>Logout</Link>
 							</Authenticated>
 						</ul>
 					</div>

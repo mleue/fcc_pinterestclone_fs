@@ -9,9 +9,9 @@ export default class NotAuthenticated extends React.Component {
 			return <div />;
 		} else {
 			return (
-				<div>
+				<li>
 					{ this.props.children }
-				</div>
+				</li>
 			);
 		}
 	}
