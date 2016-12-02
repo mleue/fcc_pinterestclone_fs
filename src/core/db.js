@@ -2,7 +2,7 @@ import mongodb from 'mongodb';
 
 function connectToDB(callback) {
 	let client = mongodb.MongoClient;
-	let url = 'mongodb://localhost:27017/test';      
+	let url = process.env.MONGOGB_URL;
 
 	client.connect(url, (err, db) => {
 		if (err) {
