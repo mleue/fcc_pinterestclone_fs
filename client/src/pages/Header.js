@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { LoginLink, LogoutLink, Authenticated, NotAuthenticated } from 'react-stormpath';
+import Authenticated from '../containers/Authenticated';
+import NotAuthenticated from '../containers/NotAuthenticated';
 
 export default class Header extends React.Component {
 	static contextTypes = {
 		appState: React.PropTypes.func
 	};
 	handleSignIn() {
+		this.context.appState('lock').show();
+	}
+	handleLogout() {
 		this.context.appState('lock').show();
 	}
 	render() {
@@ -16,29 +20,16 @@ export default class Header extends React.Component {
 					<div id="navbar-collapse" className="collapse navbar-collapse">
 						<ul className="nav navbar-nav">
 							<li><Link to="/">Home</Link></li>
-							<Authenticated>
-								<li>
-									<Link to="/profile">Profile</Link>
-								</li>
-							</Authenticated>
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
-							<li>
-								<a href="#" onClick={this.handleSignIn.bind(this)}>Sign In</a>
-							</li>
 							<NotAuthenticated>
 								<li>
-									<LoginLink />
-								</li>
-							</NotAuthenticated>
-							<NotAuthenticated>
-								<li>
-									<Link to="/register">Create Account</Link>
+									<Link to="/" onClick={this.handleSignIn.bind(this)}>Sign In</Link>
 								</li>
 							</NotAuthenticated>
 							<Authenticated>
 								<li>
-									<LogoutLink />
+									<Link to="/" onClick={this.handleLogout.bind(this)}>Logout</Link>
 								</li>
 							</Authenticated>
 						</ul>

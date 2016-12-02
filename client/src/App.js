@@ -1,11 +1,8 @@
 import React from 'react';
-import { IndexRoute, Route, browserHistory } from 'react-router';
-import { Router, HomeRoute, LoginRoute, AuthenticatedRoute } from 'react-stormpath';
+import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import MasterPage from './pages/MasterPage'
 import IndexPage from './pages/IndexPage'
-import LoginPage from './pages/LoginPage'
-import RegistrationPage from './pages/RegistrationPage'
-import ProfilePage from './pages/ProfilePage'
+import MyPins from './pages/MyPins'
 import Auth0Lock from 'auth0-lock';
 
 export default class App extends React.Component {
@@ -53,14 +50,11 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Router history={browserHistory}>
-				<HomeRoute path='/' component={MasterPage}>
+				<Route path='/' component={MasterPage}>
 					<IndexRoute component={IndexPage} />
-					<LoginRoute path='/login' component={LoginPage} />
-					<Route path='/register' component={RegistrationPage} />
-					<AuthenticatedRoute>
-						<HomeRoute path='/profile' component={ProfilePage} />
-					</AuthenticatedRoute>
-				</HomeRoute>
+					<Route path='/mypins' component={MyPins}>
+					</Route>
+				</Route>
 			</Router>
 		);
 	}

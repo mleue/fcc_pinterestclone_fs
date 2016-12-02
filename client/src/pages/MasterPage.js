@@ -8,7 +8,7 @@ export default class MasterPage extends React.Component {
 	};
 	render() {
 		return (
-			<DocumentTitle title='My React App'>
+			<DocumentTitle title='Pinterest Clone'>
 				<div className='MasterPage'>
 					<Header />
 					{ this.props.children }
