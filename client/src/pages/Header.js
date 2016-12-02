@@ -29,6 +29,11 @@ export default class Header extends React.Component {
 							</NotAuthenticated>
 							<Authenticated>
 								<li>
+									<Link to="/mypins">My Pins</Link>
+								</li>
+							</Authenticated>
+							<Authenticated>
+								<li>
 									<Link to="/" onClick={this.handleLogout.bind(this)}>Logout</Link>
 								</li>
 							</Authenticated>
