@@ -7,7 +7,6 @@ export default class Header extends React.Component {
 		appState: React.PropTypes.func
 	};
 	handleSignIn() {
-		console.log(this.context.appState('lock'));
 		this.context.appState('lock').show();
 	}
 	render() {
@@ -25,7 +24,7 @@ export default class Header extends React.Component {
 						</ul>
 						<ul className="nav navbar-nav navbar-right">
 							<li>
-								<span onClick={this.handleSignIn.bind(this)}>Sign In</span>
+								<a href="#" onClick={this.handleSignIn.bind(this)}>Sign In</a>
 							</li>
 							<NotAuthenticated>
 								<li>
