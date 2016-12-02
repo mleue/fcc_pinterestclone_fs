@@ -14,7 +14,7 @@ export default class PinGallery extends React.Component {
 		return (
 			<div className="grid" id="masonryGrid">
 				{ this.props.pins.map( pin => {
-					return <PinItem key={pin._id} img_url={pin.link} owner={pin.owner} />
+					return <PinItem key={pin._id} img_url={pin.link} owner={pin.owner} refresh={this.props.refresh} _id={pin._id} />
 				})}
 			</div>
 		);

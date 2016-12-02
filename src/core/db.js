@@ -3,7 +3,6 @@ import mongodb from 'mongodb';
 function connectToDB(callback) {
 	let client = mongodb.MongoClient;
 	let url = 'mongodb://localhost:27017/test';      
-	//let url = 'mongodb://test:sdS>vxuBofs3.I@ds113678.mlab.com:13678/fcc';
 
 	client.connect(url, (err, db) => {
 		if (err) {

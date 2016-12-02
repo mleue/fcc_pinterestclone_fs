@@ -1,5 +1,7 @@
 import React from 'react';
 import HoverImage from './HoverImage';
+import axios from 'axios';
+import {browserHistory} from 'react-router';
 
 export default class PinItem extends React.Component {
 	static contextTypes = {
@@ -27,10 +29,21 @@ export default class PinItem extends React.Component {
 		}
 	}
 	handleOnDelete() {
+		axios.post('/api/pins/deletepin', {
+			username: this.props.owner,
+			_id: this.props._id
+		})
+			.then( (response) => {
+				//console.log(response);
+				this.props.refresh();
+			})
+			.catch( (error) => {
+				console.log(error);
+			});
 
 	}
 	handleOnUserWall() {
-
+		browserHistory.push('/walls?username='+this.props.owner);
 	}
 	render() {
 		return (

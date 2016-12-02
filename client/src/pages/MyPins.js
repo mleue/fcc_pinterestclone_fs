@@ -22,14 +22,12 @@ export default class MyLibrary extends React.Component {
 	}
 	handleAddPin() {
 		let pinLink = document.getElementById('addPinLink').value;
-		let pinDesc = document.getElementById('addPinDescription').value;
 		if (pinLink !== '') {
 			document.getElementById('addPinLink').value = '';
-			document.getElementById('addPinDescription').value = '';
 			axios.post('/api/pins/addpin', {
 				username: this.context.appState('user'),
 				pinLink,
-				pinDesc
+				pinDesc: ''
 			})
 				.then( (response) => {
 					this.fetch();
@@ -52,7 +50,7 @@ export default class MyLibrary extends React.Component {
 				<div className="row">
 					<div className="col-xs-12">
 						<br />
-						<PinGallery pins={this.state.mypins} />
+						<PinGallery pins={this.state.mypins} refresh={this.fetch.bind(this)} />
 					</div>
 				</div>
 			</div>

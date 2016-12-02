@@ -3,6 +3,7 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router';
 import MasterPage from './pages/MasterPage'
 import IndexPage from './pages/IndexPage'
 import MyPins from './pages/MyPins'
+import UserWall from './pages/UserWall'
 import Auth0Lock from 'auth0-lock';
 
 export default class App extends React.Component {
@@ -22,7 +23,7 @@ export default class App extends React.Component {
 		let options = {
 			avatar: null
 		};
-		this.lock = new Auth0Lock('WGPjt1h738JEUIrASP7DyZJifSf9wWnS', 'hopfi.eu.auth0.com', options);
+		this.lock = new Auth0Lock(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN, options);
 		this.appState({ lock: this.lock });
 
 		this.lock.on("authenticated", (authResult) => {
@@ -57,8 +58,8 @@ export default class App extends React.Component {
 			<Router history={browserHistory}>
 				<Route path='/' component={MasterPage}>
 					<IndexRoute component={IndexPage} />
-					<Route path='/mypins' component={MyPins}>
-					</Route>
+					<Route path='/mypins' component={MyPins} />
+					<Route path="/:walls" component={UserWall}/>
 				</Route>
 			</Router>
 		);
