@@ -11,7 +11,9 @@ export default class Header extends React.Component {
 		this.context.appState('lock').show();
 	}
 	handleLogout() {
-		this.context.appState('lock').show();
+		//this.context.appState({authenticated: false, user: undefined});
+		localStorage.clear();
+		window.reload();
 	}
 	render() {
 		return (

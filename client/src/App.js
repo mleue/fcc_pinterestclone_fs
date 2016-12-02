@@ -10,6 +10,7 @@ export default class App extends React.Component {
 		appState: React.PropTypes.func
 	};
 	componentWillMount() {
+		console.log("app mounts");
 		if (localStorage.getItem('idToken')) {
 			let profile = JSON.parse(localStorage.getItem('profile'));
 			this.appState({ user: '@'+profile.screen_name });
@@ -23,19 +24,16 @@ export default class App extends React.Component {
 			avatar: null
 		};
 		this.lock = new Auth0Lock('WGPjt1h738JEUIrASP7DyZJifSf9wWnS', 'hopfi.eu.auth0.com', options);
-		this.state = { lock: this.lock };
+		this.appState({ lock: this.lock });
 
 		this.lock.on("authenticated", (authResult) => {
 			// Use the token in authResult to getProfile() and save it to localStorage
-			console.log(this.lock);
 			this.lock.getProfile(authResult.idToken, (error, profile) => {
 				if (error) {
 					console.log(error);
 					// Handle error
 					return;
 				}
-				console.log(profile);
-				console.log("authenticated");
 				this.appState({ user: '@'+profile.screen_name });
 				this.appState({ authenticated: true });
 
